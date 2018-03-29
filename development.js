@@ -1,5 +1,6 @@
 import path from 'path'
 import HtmlWebpackPlugin from 'html-webpack-plugin';
+import HardSourceWebpackPlugin from 'hard-source-webpack-plugin';
 
 const src  = path.resolve(__dirname, 'src')
 const dist = path.resolve(__dirname, 'dist')
@@ -18,12 +19,12 @@ export default {
     inline: true,
     port: 8000
   },
-
+  devtool: 'inline-source-map',
   module: {
     rules: [
       {
-        test: /\.js|jsx$/,
-        exclude: /(node_modules)/,
+        test: /\.js$/,
+        exclude: /node_modules/,
         use: {
           loader: 'babel-loader'
         }
@@ -39,6 +40,7 @@ export default {
     new HtmlWebpackPlugin({
       template: src + '/index.html',
       filename: 'index.html'
-    })
+    }),
+    new HardSourceWebpackPlugin()
   ]
 }
