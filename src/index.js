@@ -1,0 +1,15 @@
+import React, { Component } from 'react';
+import { render } from 'react-dom';
+
+class App extends Component {
+  render() {
+    console.log("React created");
+    return(
+      <div>
+        <p>Hello, React world!</p>
+      </div>
+    ) 
+  }
+}
+
+render(<App />, document.getElementById('app'));
