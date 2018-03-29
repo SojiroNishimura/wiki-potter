@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
+import App from './containers/App';
 
-class App extends Component {
+class Main extends Component {
   render() {
     console.log("React created");
     return(
-      <div>
-        <p>Hello, React world!</p>
-      </div>
-    ) 
+      <App />
+    )
   }
 }
 
-render(<App />, document.getElementById('app'));
+render(<Main />, document.getElementById('app'));
