@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ContentBody from '../containers/ContentBody';
 import AutoCompleteDropdown from '../components/AutoCompleteDropdown';
+import * as ApiManager from '../apis/ApiManager';
 import characterList from '../assets/character_list.json';
 
 const containerStyle = {
@@ -27,27 +28,27 @@ class App extends Component {
   }
 
   handleOnSelected(e) {
-    console.log("handleOnSelected: " + e.target.name + " " + e.target.value);
     this.setState({
       selected: e.target.value,
     });
   }
 
-  handleSubmit(e) {
+  async handleSubmit(e) {
     e.preventDefault();
     const charaName = e.target.elements.searchBox.value;
 
     if (characterList.characters.map(c => c.name).includes(charaName) && !(charaName in this.state)) {
+      const res = await ApiManager.fetchWiki(charaName);
       this.setState({
         [charaName]: {
-          name: charaName
+          name: charaName,
+          info: res
         }
       });
     }
   }
 
   render() {
-    console.dir(this.state);
     return (
       <div style={containerStyle}>
         <h1 style={headerStyle}>Wiki Potter</h1>
