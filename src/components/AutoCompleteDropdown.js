@@ -7,25 +7,24 @@ const style = {
   border: '1px lightgray solid',
   borderRadius: '4px',
   fontSize: '1.2em',
-  paddingLeft: '5px'
+  paddingLeft: '5px',
+  marginBottom: '8px'
 };
 
-class AutoCompleteDropdown extends Component {
-  render() {
-    const options = characterList.characters.map(item => (
-      <option key={item.name} value={item.name} />
-    ));
+const options = characterList.characters.map(item => (
+  <option key={item.name} value={item.name} />
+));
 
-    return(
-      <div>
-        <input style={style} type="search" name="searchBox" autoFocus={focus} autocomplete="on" list="options"
-         onChange={this.props.onItemSelected} />
-        <datalist id="options">
-          {options}
-        </datalist>
-      </div>
-    )
-  }
-}
+const AutoCompleteDropdown = (props) => {
+  return (
+    <div>
+      <input style={style} type="search" name="searchBox" autoFocus={focus} autocomplete="on" list="options"
+        onChange={props.onItemSelected} />
+      <datalist id="options">
+        {options}
+      </datalist>
+    </div>
+  )
+};
 
 export default AutoCompleteDropdown;
