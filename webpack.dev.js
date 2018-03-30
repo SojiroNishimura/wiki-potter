@@ -1,9 +1,10 @@
 import path from 'path'
+import webpack from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import HardSourceWebpackPlugin from 'hard-source-webpack-plugin';
 
 const src  = path.resolve(__dirname, 'src')
-const dist = path.resolve(__dirname, 'dist')
+const dist = path.resolve(__dirname, 'build')
 
 export default {
   entry: src + '/index.js',
