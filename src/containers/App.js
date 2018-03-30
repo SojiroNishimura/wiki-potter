@@ -1,17 +1,63 @@
 import React, { Component } from 'react';
+import ContentBody from '../containers/ContentBody';
 import AutoCompleteDropdown from '../components/AutoCompleteDropdown';
+import characterList from '../assets/character_list.json';
 
 const containerStyle = {
   margin: '20px 0 0 20px'
 };
 
+const headerStyle = {
+  fontSize: '3em',
+  fontFamily: 'Nanum Myeongjo, serif',
+  fontStyle: 'bold',
+  margin: '10px 0'
+};
+
 class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      selected: ''
+    };
+
+    this.handleOnSelected = this.handleOnSelected.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleOnSelected(e) {
+    console.log("handleOnSelected: " + e.target.name + " " + e.target.value);
+    this.setState({
+      selected: e.target.value,
+    });
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    const charaName = e.target.elements.searchBox.value;
+
+    if (characterList.characters.map(c => c.name).includes(charaName) && !(charaName in this.state)) {
+      this.setState({
+        [charaName]: {
+          name: charaName
+        }
+      });
+    }
+  }
+
   render() {
-    return(
+    console.dir(this.state);
+    return (
       <div style={containerStyle}>
-        <AutoCompleteDropdown />
+        <h1 style={headerStyle}>Wiki Potter</h1>
+        <form onSubmit={this.handleSubmit}>
+          <AutoCompleteDropdown onItemSelected={this.handleOnSelected} />
+          <input type="submit" value="Search" />
+        </form>
+        <ContentBody charaInfo={this.state[this.state.selected]} />
       </div>
-    ) 
+    )
   }
 }
 

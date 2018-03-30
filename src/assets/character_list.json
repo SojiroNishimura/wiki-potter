@@ -1,0 +1,12 @@
+{
+  "characters": [
+    { "name": "Harry Potter" },
+    { "name": "Ron Weasley" },
+    { "name": "Hermione Granger" },
+    { "name": "Lord Voldemort" },
+    { "name": "Albus Dumbledore" },
+    { "name": "Severus Snape" },
+    { "name": "Rubeus Hagrid" },
+    { "name": "Draco Malfoy" }
+  ]
+}

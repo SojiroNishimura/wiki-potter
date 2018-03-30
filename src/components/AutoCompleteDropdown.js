@@ -1,27 +1,5 @@
 import React, { Component } from 'react';
-
-const lists = [
-  {
-    name: "hoge",
-    value: 1
-  },
-  {
-    name: "huga",
-    value: 2
-  },
-  {
-    name: "piyo",
-    value: 3
-  },
-  {
-    name: "Hoo",
-    value: 4
-  },
-  {
-    name: "Paa",
-    value: 5
-  }
-];
+import characterList from '../assets/character_list.json';
 
 const style = {
   width: '240px',
@@ -34,13 +12,14 @@ const style = {
 
 class AutoCompleteDropdown extends Component {
   render() {
-    const options = lists.map(item => (
-      <option value={item.name} />
+    const options = characterList.characters.map(item => (
+      <option key={item.name} value={item.name} />
     ));
 
     return(
       <div>
-        <input style={style} type="search" autocomplete="on" list="options" />
+        <input style={style} type="search" name="searchBox" autoFocus={focus} autocomplete="on" list="options"
+         onChange={this.props.onItemSelected} />
         <datalist id="options">
           {options}
         </datalist>
