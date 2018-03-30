@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import characterList from '../assets/character_list.json';
 
 const style = {
@@ -25,6 +26,10 @@ const AutoCompleteDropdown = (props) => {
       </datalist>
     </div>
   )
+};
+
+AutoCompleteDropdown.PropTypes = {
+  onChange: PropTypes.func
 };
 
 export default AutoCompleteDropdown;

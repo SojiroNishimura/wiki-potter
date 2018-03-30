@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const headingStyle = {
   fontFamily: 'Nanum Myeongjo, serif',
@@ -22,6 +23,13 @@ const ContentBody = (props) => {
       <p style={descriptionStyle}>{description}</p>
     </div>
   )
+};
+
+ContentBody.PropTypes = {
+  charaInfo: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    description: PropTypes.string
+  })
 };
 
 export default ContentBody;
