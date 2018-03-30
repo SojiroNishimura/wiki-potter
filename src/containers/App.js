@@ -3,6 +3,7 @@ import ContentBody from '../containers/ContentBody';
 import AutoCompleteDropdown from '../components/AutoCompleteDropdown';
 import * as ApiManager from '../apis/ApiManager';
 import characterList from '../assets/character_list.json';
+import '../assets/datalist-polyfill.min';
 
 const containerStyle = {
   margin: '20px 0 0 20px'
@@ -40,6 +41,7 @@ class App extends Component {
     if (characterList.characters.map(c => c.name).includes(charaName) && !(charaName in this.state)) {
       const res = await ApiManager.fetchWiki(charaName);
       this.setState({
+        selected: charaName,
         [charaName]: {
           name: charaName,
           info: res
